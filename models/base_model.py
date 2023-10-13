@@ -15,6 +15,10 @@ class BaseModel:
         """This will be updated everytime you change your object"""
         self.updated_at = datetime.now()
 
+    def save(self):
+        """Updates the public instance attribute 'updated_at' with the current datetime."""
+        self.updated_at = datetime.now()
+
     def __str__(self):
         """This method defines a custom string representation for this model"""
         dic = {}
