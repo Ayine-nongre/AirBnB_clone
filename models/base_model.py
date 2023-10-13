@@ -7,13 +7,19 @@ from datetime import datetime
 
 class BaseModel:
     """Defining the base constructor"""
-    def __init__(self):
-        """Using uuid.uuid4 to generate the unique id"""
-        self.id = str(uuid.uuid4())
-        """Assign the current datetime to the instance created"""
-        self.created_at = datetime.now()
-        """This will be updated everytime you change your object"""
-        self.updated_at = datetime.now()
+    def __init__(self, *args, **kwargs):
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == 'created_at' or key == 'updated_at':
+                    value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                setattr(self, key, value)
+        else:
+            """Using uuid.uuid4 to generate the unique id"""
+            self.id = str(uuid.uuid4())
+            """Assign the current datetime to the instance created"""
+            self.created_at = datetime.now()
+            """This will be updated everytime you change your object"""
+            self.updated_at = datetime.now()
 
     def save(self):
         """Updates the public instance attribute 'updated_at' with the current datetime."""
@@ -33,6 +39,9 @@ class BaseModel:
         dic = {}
 
         for key, data in self.__dict__.items():
-            dic[key] = data
+            if key == 'created_at' or key == 'updated_at':
+                dic[key] = data.strftime('%Y-%m-%dT%H:%M:%S.%f')
+            else:
+                dic[key] = data
 
         return dic
