@@ -8,10 +8,14 @@ from datetime import datetime
 class BaseModel:
     """Defining the base constructor"""
     def __init__(self, *args, **kwargs):
-        if kwargs:
-            for key, value in kwargs.items():
+        """if kwargs is not empty, we handle it"""
+        if len(kwargs) > 0:
+           """Iterating over the items in the kwargs dictionary"""
+           for key, value in kwargs.items():
+                """Checks if the key attributes is either at created_at or updated_at"""
                 if key == 'created_at' or key == 'updated_at':
-                    value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                   """Convert the value from a string to a datetime object"""
+                   value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
                 setattr(self, key, value)
         else:
             """Using uuid.uuid4 to generate the unique id"""
