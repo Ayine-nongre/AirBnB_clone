@@ -49,5 +49,5 @@ class BaseModel:
                 dic[key] = data.strftime('%Y-%m-%dT%H:%M:%S.%f')
             else:
                 dic[key] = data
-
+        dic['__class__'] = type(self).__name__
         return dic
