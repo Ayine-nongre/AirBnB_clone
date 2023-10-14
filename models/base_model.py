@@ -10,12 +10,13 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """if kwargs is not empty, we handle it"""
         if len(kwargs) > 0:
-           """Iterating over the items in the kwargs dictionary"""
-           for key, value in kwargs.items():
-                """Checks if the key attributes is either at created_at or updated_at"""
+            """Iterating over the items in the kwargs dictionary"""
+            for key, value in kwargs.items():
+                """Checks if the key attributes
+                is either created_at or updated_at"""
                 if key == 'created_at' or key == 'updated_at':
-                   """Convert the value from a string to a datetime object"""
-                   value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                    """Convert the value from a string to a datetime object"""
+                    value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
                 setattr(self, key, value)
         else:
             """Using uuid.uuid4 to generate the unique id"""
@@ -26,7 +27,8 @@ class BaseModel:
             self.updated_at = datetime.now()
 
     def save(self):
-        """Updates the public instance attribute 'updated_at' with the current datetime."""
+        """Updates the public instance attribute
+        'updated_at' with the current datetime."""
         self.updated_at = datetime.now()
 
     def __str__(self):
