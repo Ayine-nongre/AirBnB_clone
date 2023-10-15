@@ -18,7 +18,8 @@ class BaseModel:
                 if key == 'created_at' or key == 'updated_at':
                     """Convert the value from a string to a datetime object"""
                     value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
-                setattr(self, key, value)
+                if key != "__class__":
+                    setattr(self, key, value)
         else:
             """Using uuid.uuid4 to generate the unique id"""
             self.id = str(uuid.uuid4())

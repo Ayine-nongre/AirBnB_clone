@@ -42,6 +42,6 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r') as f:
                 for key, value in json.load(f).items():
                     obj = key.split('.')
-                    for tag, data in models:
+                    for tag, data in models.items():
                         if obj[0] == tag:
                             self.new(data(**value))
