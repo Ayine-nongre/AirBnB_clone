@@ -14,7 +14,8 @@ class UserCase(unittest.TestCase):
 
     def test_user_model(self):
         """tests to check if class was created"""
-        self.assertEqual(str(type(self.user_model)), "<class 'models.user.User'>")
+        self.assertEqual(str(type(self.user_model)),
+                         "<class 'models.user.User'>")
 
     def test_user_attributes(self):
         """Test to check if attributes were created"""
@@ -35,6 +36,7 @@ class UserCase(unittest.TestCase):
         self.assertIsInstance(self.user_model.last_name, str)
         self.assertIsInstance(self.user_model.email, str)
         self.assertIsInstance(self.user_model.password, str)
+
 
 if __name__ == '__main__':
     unittest.main()

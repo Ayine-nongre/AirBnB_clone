@@ -5,6 +5,7 @@ import unittest
 from models.base_model import BaseModel
 from datetime import datetime
 
+
 class BaseModelTest(unittest.TestCase):
     """Tests cases for the base model"""
     test_model = BaseModel()
@@ -18,7 +19,8 @@ class BaseModelTest(unittest.TestCase):
         test_modelJson = self.test_model.to_dict()
 
         self.assertEqual(self.test_model.name, test_modelJson['name'])
-        self.assertEqual(self.test_model.my_number, test_modelJson['my_number'])
+        self.assertEqual(self.test_model.my_number,
+                         test_modelJson['my_number'])
         self.assertEqual('BaseModel', test_modelJson['__class__'])
         self.assertEqual(self.test_model.id, test_modelJson['id'])
 
@@ -30,7 +32,9 @@ class BaseModelTest(unittest.TestCase):
         self.assertIsInstance(self.test_model.id, str)
         self.assertIsInstance(self.test_model.created_at, datetime)
         self.assertIsInstance(self.test_model.updated_at, datetime)
-        self.assertNotEqual(self.test_model.created_at, self.test_model.updated_at)
+        self.assertNotEqual(self.test_model.created_at,
+                            self.test_model.updated_at)
+
 
 if __name__ == '__main__':
-    unittest.main() 
+    unittest.main()
