@@ -31,7 +31,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: create <class name>"""
 
         models = {"BaseModel": BaseModel, "User": User, "State": State,
-                  "City", City, "Amenity": Amenity, "Place": Place,
+                  "City": City, "Amenity": Amenity, "Place": Place,
                   "Review": Review}
 
         if not model:
@@ -51,7 +51,7 @@ class HBNBCommand(cmd.Cmd):
         model = args.split(" ")
 
         models = {"BaseModel": BaseModel, "User": User, "State": State,
-                  "City", City, "Amenity": Amenity, "Place": Place,
+                  "City": City, "Amenity": Amenity, "Place": Place,
                   "Review": Review}
 
         if not model[0]:
@@ -76,7 +76,7 @@ class HBNBCommand(cmd.Cmd):
         model = args.split(" ")
 
         models = {"BaseModel": BaseModel, "User": User, "State": State,
-                  "City", City, "Amenity": Amenity, "Place": Place,
+                  "City": City, "Amenity": Amenity, "Place": Place,
                   "Review": Review}
 
         if not model[0]:

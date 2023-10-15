@@ -39,10 +39,10 @@ class FileStorage:
         from models.state import State
         from models.amenity import Amenity
         from models.place import Place
-        from model.review import Review
+        from models.review import Review
 
         models = {"BaseModel": BaseModel, "User": User, "State": State,
-                  "City", City, "Amenity": Amenity, "Place": Place,
+                  "City": City, "Amenity": Amenity, "Place": Place,
                   "Review": Review}
 
         if os.path.exists(FileStorage.__file_path):
