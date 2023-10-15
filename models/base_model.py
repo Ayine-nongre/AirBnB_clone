@@ -3,6 +3,7 @@
 
 import uuid
 from datetime import datetime
+from models import storage
 
 
 class BaseModel:
@@ -25,11 +26,13 @@ class BaseModel:
             self.created_at = datetime.now()
             """This will be updated everytime you change your object"""
             self.updated_at = datetime.now()
+            storage.new(self)
 
     def save(self):
         """Updates the public instance attribute
         'updated_at' with the current datetime."""
         self.updated_at = datetime.now()
+        storage.save()
 
     def __str__(self):
         """This method defines a custom string representation for this model"""
