@@ -25,7 +25,9 @@ class HBNBCommand(cmd.Cmd):
         This command is used to create an object model
         Usage: create <class name>"""
 
-        models = {"BaseModel": BaseModel, "User": User}
+        models = {"BaseModel": BaseModel, "User": User, "State": State,
+                  "City", City, "Amenity": Amenity, "Place": Place,
+                  "Review": Review}
 
         if not model:
             print("** class name missing **")
@@ -43,7 +45,9 @@ class HBNBCommand(cmd.Cmd):
         data = storage.all()
         model = args.split(" ")
 
-        models = {"BaseModel": BaseModel, "User": User}
+        models = {"BaseModel": BaseModel, "User": User, "State": State,
+                  "City", City, "Amenity": Amenity, "Place": Place,
+                  "Review": Review}
 
         if not model[0]:
             print("** class name missing **")
@@ -66,7 +70,9 @@ class HBNBCommand(cmd.Cmd):
         data = storage.all()
         model = args.split(" ")
 
-        models = {"BaseModel": BaseModel, "User": User}
+        models = {"BaseModel": BaseModel, "User": User, "State": State,
+                  "City", City, "Amenity": Amenity, "Place": Place,
+                  "Review": Review}
 
         if not model[0]:
             print("** class name missing **")
@@ -113,7 +119,8 @@ class HBNBCommand(cmd.Cmd):
         """
 
         data = storage.all()
-        models = ["BaseModel", "User"]
+        models = ["BaseModel", "User", "State", "City",
+                  "Amenity", "Place", "Review"]
 
         model = args.split()
         if len(model) == 0:
