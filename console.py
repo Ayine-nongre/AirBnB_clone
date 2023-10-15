@@ -23,12 +23,15 @@ class HBNBCommand(cmd.Cmd):
         """
         This command is used to create an object model
         Usage: create <class name>"""
+
+        models = {"BaseModel": BaseModel, "User": User}
+
         if not model:
             print("** class name missing **")
-        elif model != 'BaseModel':
+        elif model not in models:
             print("** class doesn't exist **")
         else:
-            new_model = BaseModel()
+            new_model = models[model]()
             print(new_model.id)
 
     def do_show(self, args):
@@ -39,9 +42,11 @@ class HBNBCommand(cmd.Cmd):
         data = storage.all()
         model = args.split(" ")
 
+        models = {"BaseModel": BaseModel, "User": User}
+
         if not model[0]:
             print("** class name missing **")
-        elif model[0] != 'BaseModel':
+        elif model[0] not in models:
             print("** class doesn't exist **")
         elif len(model) != 2:
             print("** instance id missing **")
@@ -60,9 +65,11 @@ class HBNBCommand(cmd.Cmd):
         data = storage.all()
         model = args.split(" ")
 
+        models = {"BaseModel": BaseModel, "User": User}
+
         if not model[0]:
             print("** class name missing **")
-        elif model[0] != 'BaseModel':
+        elif model[0] not in models:
             print("** class doesn't exist **")
         elif len(model) != 2:
             print("** instance id missing **")
@@ -105,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
         """
 
         data = storage.all()
-        models = ["BaseModel"]
+        models = ["BaseModel", "User"]
 
         model = args.split()
         if len(model) == 0:
@@ -123,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
                 tag = key.split('.')
                 if model[0] == tag[0]:
                     if model[1] == value.id:
-                        print(value)
+                        setattr(value, model[2], model[3])
                         return
             print("** no instance found **")
 
