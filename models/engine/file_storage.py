@@ -34,10 +34,14 @@ class FileStorage:
         """This method reads the data from a json file
         and makes it an object by deserialization"""
         from models.base_model import BaseModel
+        from models.user import User
+
+        models = {"BaseModel": BaseModel, "User": User}
 
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r') as f:
                 for key, value in json.load(f).items():
                     obj = key.split('.')
-                    if obj[0] == 'BaseModel':
-                        self.new(BaseModel(value))
+                    for tag, data in models:
+                        if obj[0] == tag:
+                            self.new(data(**value))
